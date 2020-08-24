@@ -1,5 +1,5 @@
 package ru.alishev.springcourse;
 
-public enum  MusicStyle {
+public enum MusicGenre {
 	CLASSICAL, ROCK
 }
