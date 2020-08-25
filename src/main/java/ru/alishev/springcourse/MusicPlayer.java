@@ -1,9 +1,16 @@
 package ru.alishev.springcourse;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
+import java.util.Random;
+
 public class MusicPlayer {
+	List<Music> list;
+
+	public MusicPlayer(List<Music> list) {
+		this.list = list;
+	}
 
 	@Value("${musicPlayer.name}")
 	private String name;
@@ -19,16 +26,7 @@ public class MusicPlayer {
 		return volume;
 	}
 
-	private Music music1;
-	private Music music2;
-
-	public MusicPlayer(@Qualifier("rockMusic") Music music1,
-	                   @Qualifier("classicalMusic") Music music2) {
-		this.music1 = music1;
-		this.music2 = music2;
-	}
-
 	public String playMusic() {
-		return "Playing: " + music1.getSong() + ", " + music2.getSong();
+		return "Playing: " + list.get(new Random().nextInt(list.size())).getSong();
 	}
 }
